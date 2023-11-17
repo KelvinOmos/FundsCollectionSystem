@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\KeysManager\TemplateManager_old\**" />
+    <Content Remove="Pages\KeysManager\TemplateManager_old\**" />
+    <EmbeddedResource Remove="Pages\KeysManager\TemplateManager_old\**" />
+    <None Remove="Pages\KeysManager\TemplateManager_old\**" />
+    <None Remove="Models\SavingsGroup\" />
+    <None Remove="Pages\SavingsGroup\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\UserManagement\Users\Create.cshtml" />
+    <None Include="Pages\UserManagement\Users\Delete.cshtml" />
+    <None Include="Pages\UserManagement\Users\Details.cshtml" />
+    <None Include="Pages\UserManagement\Users\Edit.cshtml" />
+    <None Include="Pages\UserManagement\Users\Index.cshtml" />
+    <None Include="wwwroot\src\dual-list\dist\jquery.bootstrap-duallistbox.js" />
+    <None Include="wwwroot\src\dual-list\dist\jquery.bootstrap-duallistbox.min.js" />
+    <None Include="wwwroot\src\dual-list\jquery.bootstrap-duallistbox.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.31.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\SavingsGroup\" />
+    <Folder Include="Pages\SavingsGroup\" />
+  </ItemGroup>
+</Project>

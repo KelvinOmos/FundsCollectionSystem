@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title> @ViewData["Title"] - CollectionSystem</title>
+    <link rel="icon" type="image/x-icon" href="~/src/assets/img/engine.svg" />
+    <!-- ENABLE LOADERS -->
+    <link href="~/layouts/modern-light-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
+    <link href="~/layouts/modern-light-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
+    <!-- /ENABLE LOADERS -->
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="~/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/src/assets/css/light/elements/alert.css">
+    <link rel="stylesheet" type="text/css" href="~/src/assets/css/dark/elements/alert.css">
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link rel="stylesheet" href="~/src/plugins/src/sweetalerts2/sweetalerts2.css">
+    <!-- END THEME GLOBAL STYLES -->
+</head>
+<body class="layout-boxed">
+
+    <!-- BEGIN LOADER -->
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END LOADER -->
+    @RenderBody()
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/src/plugins/src/sweetalerts2/sweetalerts2.min.js"></script>
+    <script src="~/src/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/layouts/modern-light-menu/loader.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

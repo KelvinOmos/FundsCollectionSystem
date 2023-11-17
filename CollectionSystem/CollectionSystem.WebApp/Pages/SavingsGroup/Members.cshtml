@@ -1,0 +1,123 @@
+﻿@page
+@model CollectionSystem.WebApp.Pages.SavingsGroup.MembersModel
+@{
+    ViewData["Title"] = "Savings Group Members";
+    var i = 1;
+}
+
+
+<!--  BEGIN CONTENT AREA  -->
+<div class="layout-px-spacing">
+
+    <div class="middle-content container-xxl p-0">
+
+        <!-- BREADCRUMB -->
+        <div class="page-meta pb-2">
+            <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/Dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- /BREADCRUMB -->
+        <div class="row">
+            <div class="col-md-9">
+            </div>
+        </div>
+
+
+        <!-- CONTENT AREA -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <table id="individual-col-search" class="table dt-table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Name</th>
+                                    <th>User Name</th>
+                                    <th>Savings</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.users != null)
+                                {
+                                    @foreach (var item in Model.users)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.UserName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TotalAmountSaved)
+                                            </td>
+                                        </tr>
+                                        i++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- CONTENT AREA -->
+    </div>
+
+</div>
+<!--  END CONTENT AREA  -->
+@section Scripts
+    {
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]'
+            })
+        </script>
+        TempData.Clear();
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: '@TempData["SuccessMessage"]'
+            })
+        </script>
+        TempData.Clear();
+    }
+}

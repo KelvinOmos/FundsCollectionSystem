@@ -1,0 +1,93 @@
+﻿@page
+@model CollectionSystem.WebApp.Pages.UserManagement.Users.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <div class="container">
+
+        <!-- BREADCRUMB -->
+        <div class="page-meta">
+            <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/Dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/UserManagement/Users/Index">Users Management</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- /BREADCRUMB -->
+
+        <div id="navSection" data-bs-spy="affix" class="nav  sidenav">
+            <div class="sidenav-content">
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="flHorizontalForm" class="col-lg-7 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-header">
+                        <div class="row align-item-center">
+                            <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                                <h4>Create New User</h4>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="widget-content widget-content-area p-3">
+                        <form asp-action="Create" class="row g-3">
+                            <div validation="ModelOnly" class="text-danger"></div>                           
+                            <div class="col-md-6">
+                                <label for="Name" class="form-label">First Name</label>
+                                <input id="Name" asp-for="newUser.FirstName" class="form-control form-control-sm" />
+                                <span asp-validation-for="newUser.FirstName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="lName" class="form-label">Last Name</label>
+                                <input id="lName" asp-for="newUser.LastName" class="form-control form-control-sm" />
+                                <span asp-validation-for="newUser.LastName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="Email" class="form-label">Email</label>
+                                <input id="Email" asp-for="newUser.Email" class="form-control form-control-sm" />
+                                <span asp-validation-for="newUser.Email" class="text-danger"></span>
+                            </div>                                                     
+
+                            <div class="col-md-7">
+                                <button type="submit" class="btn btn-primary btn-sm">Create</button>
+                                <a class="btn btn-primary btn-sm align-item-right" href="~/UserManagement/Users/Index">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {    
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]'
+            })
+        </script>
+        TempData.Clear();
+    }
+}

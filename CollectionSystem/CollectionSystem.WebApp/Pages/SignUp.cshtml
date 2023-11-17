@@ -1,0 +1,126 @@
+﻿@page
+@model CollectionSystem.WebApp.Pages.SignUpModel
+@{
+
+    Layout = "~/Pages/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "Sign In";
+}
+
+<title id="title">@ViewData["Title"]</title>
+<link rel="icon" type="image/x-icon" href="~/src/assets/img/secure.ico" />
+<link href="~/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/src/assets/css/light/authentication/auth-boxed.css" rel="stylesheet" type="text/css" />
+<link href="~/src/assets/css/dark/authentication/auth-boxed.css" rel="stylesheet" type="text/css" />
+
+<div class="form bg-white">
+    <div class="auth-container d-flex">
+
+        <div class="container mx-auto align-self-center">
+
+            <div class="row">
+
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-12 col-12 d-flex flex-column align-self-center mx-auto">
+                    <div class="card bg-muted mt-3 mb-3 col-md-10 ">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 d-flex justify-content-center" style="margin-bottom: 15px;">
+                                    <img class="rounded-circle shadow-4-strong" src="~/src/assets/img/money-7578738_1280.jpg" alt="ATMkeys" width="100" height="100" />
+                                </div>
+                                <div class="col-md-12 mb-3 justify-content-center text-center">
+                                    <h2><span class="text-dark">Sign Up</span></h2>
+                                    <p><span bg-dark">Create your account to get started</span></p>
+                                </div>
+                                @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="Name" class="form-label">First Name</label>
+                                            <input id="Name" asp-for="newUser.FirstName" class="form-control form-control-sm" />
+                                            <span asp-validation-for="newUser.FirstName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="lName" class="form-label">Last Name</label>
+                                            <input id="lName" asp-for="newUser.LastName" class="form-control form-control-sm" />
+                                            <span asp-validation-for="newUser.LastName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="Email" class="form-label">Email</label>
+                                            <input id="Email" asp-for="newUser.Email" class="form-control form-control-sm" />
+                                            <span asp-validation-for="newUser.Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-4">
+                                            <label for="UName" class="form-label">Username</label>
+                                            <input id="UName" asp-for="newUser.UserName" class="form-control form-control-sm" />
+                                            <span asp-validation-for="newUser.UserName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="mb-4">
+                                            <label for="Password" class="form-label">Password</label>
+                                            <input id="Password" asp-for="newUser.Password" type="password" class="form-control form-control-sm" />
+                                            <span asp-validation-for="newUser.Password" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="mb-4">
+                                            <label for="CPassword" class="form-label">Confirm Password</label>
+                                            <input id="CPassword" asp-for="newUser.ConfirmPassword" type="password" class="form-control form-control-sm" />
+                                            <span asp-validation-for="newUser.ConfirmPassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-4">
+                                            <button class="btn btn-danger w-100">CREATE ACCOUNT</button>
+                                        </div>
+                                    </div>
+                                }
+                                <a href="~/Index">Sign In</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="~/src/bootstrap/js/bootstrap.bundle.min.js"></script>
+@section Scripts
+    {
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 30000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]'
+            })
+        </script>
+        TempData.Clear();
+    }
+}

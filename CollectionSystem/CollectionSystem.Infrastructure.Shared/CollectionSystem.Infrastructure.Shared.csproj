@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="MimeKit" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CollectionSystem.Application\CollectionSystem.Application.csproj" />
+    <ProjectReference Include="..\CollectionSystem.Infrastructure.Persistence\CollectionSystem.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\CollectionSystem.Infrastructure.Identity\CollectionSystem.Infrastructure.Identity\CollectionSystem.Infrastructure.Identity.csproj" />
+  </ItemGroup>
+
+</Project>

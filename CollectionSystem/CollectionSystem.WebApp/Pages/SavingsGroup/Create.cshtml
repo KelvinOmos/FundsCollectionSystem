@@ -1,0 +1,105 @@
+﻿@page
+@model CollectionSystem.WebApp.Pages.SavingsGroup.CreateModel
+@{
+}
+
+
+<div class="container">
+    <div class="container">
+
+        <!-- BREADCRUMB -->
+        <div class="page-meta">
+            <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/Dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/UserManagement/SavingsGroups/Index">SavingsGroup Management</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- /BREADCRUMB -->
+
+        <div id="navSection" data-bs-spy="affix" class="nav  sidenav">
+            <div class="sidenav-content">
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="flHorizontalForm" class="col-lg-7 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-header">
+                        <div class="row align-item-center">
+                            <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                                <h4>New SavingsGroup</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-area p-3">
+                        <form asp-action="Create" class="row g-3">
+                            <div validation="ModelOnly" class="text-danger"></div>
+
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="SavingsGroupName" class="form-label">Group Name</label>
+                                    <input id="SavingsGroupName" asp-for="savingsGroup.GroupName" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="description" class="form-label">Description</label>
+                                    <input id="description" asp-for="savingsGroup.Description" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="amount" class="form-label">Amount</label>
+                                    <input id="amount" asp-for="savingsGroup.Amount" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="maxCap" class="form-label">Maximum Capacity</label>
+                                    <input id="maxCap" asp-for="savingsGroup.MaximumCapacity" class="form-control form-control-sm" />
+                                    <span validation="UserName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-7">
+                                <button type="submit" class="btn btn-primary btn-sm">Create</button>
+                                <a class="btn btn-primary btn-sm align-item-right" href="~/UserManagement/SavingsGroups/Index">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]'
+            })
+        </script>
+        TempData.Clear();
+    }
+}

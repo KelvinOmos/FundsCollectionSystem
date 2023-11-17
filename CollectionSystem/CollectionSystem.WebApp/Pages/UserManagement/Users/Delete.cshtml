@@ -1,0 +1,89 @@
+﻿@page
+@model CollectionSystem.WebApp.Pages.UserManagement.Users.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div class="container">
+    <div class="container">
+
+        <!-- BREADCRUMB -->
+        <div class="page-meta">
+            <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/Dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/UserManagement/Users/Index">User Management</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- /BREADCRUMB -->
+
+        <div id="navSection" data-bs-spy="affix" class="nav  sidenav">
+            <div class="sidenav-content">
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="flHorizontalForm" class="col-lg-12 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                <h4><b>Delete @Model.user.FirstName</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-area p-3">                        
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                Name
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.user.FirstName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Email
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.user.Email)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Username
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.user.UserName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Status
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.user.Status)
+                            </dd>                            
+                        </dl>
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="user.Id" />
+                            <input type="submit" value="Delete" class="btn btn-danger" /> |
+                            <a class="btn btn-primary" href="~/UserManagement/Users/Index">Back to List</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]',
+            })
+        </script>
+        TempData.Clear();
+    }
+}

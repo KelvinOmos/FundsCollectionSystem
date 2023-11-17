@@ -1,0 +1,114 @@
+﻿@page
+@model IndexModel
+@{
+
+    Layout = "~/Pages/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "Sign In";
+}
+
+<title id="title">@ViewData["Title"]</title>
+<link rel="icon" type="image/x-icon" href="~/src/assets/img/secure.ico" />
+<link href="~/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/src/assets/css/light/authentication/auth-boxed.css" rel="stylesheet" type="text/css" />
+<link href="~/src/assets/css/dark/authentication/auth-boxed.css" rel="stylesheet" type="text/css" />
+
+<div class="form bg-white">
+    <div class="auth-container d-flex">
+
+        <div class="container mx-auto align-self-center">
+
+            <div class="row">
+
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-12 col-12 d-flex flex-column align-self-center mx-auto">
+                    <div class="card bg-muted mt-3 mb-3 col-md-10 ">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 d-flex justify-content-center" style="margin-bottom: 15px;">
+                                    <img class="rounded-circle shadow-4-strong" src="~/src/assets/img/money-7578738_1280.jpg" alt="ATMkeys" width="100" height="100" />
+                                </div>
+                                <div class="col-md-12 mb-3 justify-content-center text-center">
+                                    <h2><span class="text-dark">Sign In</span></h2>
+                                    <p><span bg-dark">Enter your username and password to login</span></p>
+                                </div>
+                                @using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-md-12 py-4">
+                                        <div class="mb-3">
+                                            <label class="form-label"><span class="text-dark">Username</span></label>
+                                            <input asp-for="userprofile.userID" placeholder="Enter username" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-4">
+                                            <label class="form-label"><span class="text-dark">Password</span></label>
+                                            <input asp-for="userprofile.password" type="password" placeholder="Enter password" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-4">
+                                            <button class="btn btn-danger w-100">SIGN IN</button>
+                                        </div>
+                                    </div>
+                                }
+                                <a href="~/SignUp">Don't have an account?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="~/src/bootstrap/js/bootstrap.bundle.min.js"></script>
+@section Scripts
+    {
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 30000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]'
+            })
+        </script>
+        TempData.Clear();
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 30000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: '@TempData["SuccessMessage"]'
+            })
+        </script>
+        TempData.Clear();
+    }
+}

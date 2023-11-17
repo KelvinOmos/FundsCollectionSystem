@@ -1,0 +1,87 @@
+﻿@page
+@model CollectionSystem.WebApp.Pages.SavingsGroup.JoinModel
+@{
+    ViewData["Title"] = "Join Group";
+}
+<div class="container">
+    <div class="container">
+
+        <!-- BREADCRUMB -->
+        <div class="page-meta">
+            <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/Dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a aria-expanded="false" class="dropdown-toggle" href="~/SavingsGroup/Index">Savings Groups</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- /BREADCRUMB -->
+
+        <div id="navSection" data-bs-spy="affix" class="nav  sidenav">
+            <div class="sidenav-content">
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="flHorizontalForm" class="col-lg-12 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                @Html.DisplayNameFor(model => model.savingsGroup.GroupName)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-area p-3">
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                Group Name
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.savingsGroup.GroupName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Group Description
+                            </dt>
+                            <dt class="col-sm-2">
+                                Amount
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.savingsGroup.Amount)
+                            </dd>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.savingsGroup.Description)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Maximum Capacity
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.savingsGroup.MaximumCapacity)
+                            </dd>
+                        </dl>
+
+                        <form asp-action="Join">
+                            <input type="hidden" asp-for="savingsGroup.Id" />
+                            <input type="submit" value="Join" class="btn btn-success" /> |
+                            <a class="btn btn-primary" href="~/SavingsGroup/Index">Back to List</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]',
+            })
+        </script>
+        TempData.Clear();
+    }
+}
